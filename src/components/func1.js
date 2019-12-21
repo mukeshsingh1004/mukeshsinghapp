@@ -36,8 +36,8 @@ class func1 extends Component
          "Mobile": this.state.Mobile,
          "Email": this.state.Email};
 
-         //http://localhost:7071/api/AddNewUser
-        fetch('http://localhost:7071/api/AddNewUser', {
+         //http://localhost:7071/api/AddNewUsery
+        fetch('https://mukeshsingh.azurewebsites.net/api/AddNewUser?code=GcU4AMRhxHKCiyMLoxp4tZUI2maeuq8U5GUI56oW8haWLOoUZE3Xdw==', {
             method: 'post',
             headers: { 'Content-Type': 'application/json', 'Sec-Fetch-Mode': 'no-cors',
             'Access-Control-Allow-Origin': '*'
