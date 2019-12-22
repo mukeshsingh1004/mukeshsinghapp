@@ -9,7 +9,7 @@ class func3 extends Component
 
     componentDidMount()
     {
-        fetch('www.google.com')
+        fetch('http://localhost:7071/api/GetAllUsers')
         .then(result => {
             return result.text();
         })

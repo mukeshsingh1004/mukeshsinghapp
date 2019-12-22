@@ -1,4 +1,5 @@
 import React, {Component } from 'react';
+import {Button} from 'react-bootstrap';
 
 class func1 extends Component
 {
@@ -36,19 +37,22 @@ class func1 extends Component
          "Mobile": this.state.Mobile,
          "Email": this.state.Email};
 
-         //http://localhost:7071/api/AddNewUsery
-        fetch('https://mukeshsingh.azurewebsites.net/api/AddNewUser?code=GcU4AMRhxHKCiyMLoxp4tZUI2maeuq8U5GUI56oW8haWLOoUZE3Xdw==', {
+          //fetch('http://localhost:7071/api/AddNewUser', {
+          fetch('https://mukeshsingh.azurewebsites.net/api/AddNewUser?code=GcU4AMRhxHKCiyMLoxp4tZUI2maeuq8U5GUI56oW8haWLOoUZE3Xdw==', {
             method: 'post',
             headers: { 'Content-Type': 'application/json', 'Sec-Fetch-Mode': 'no-cors',
             'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify(userObject)
            })
+           .then((response) => {
+            this.setState({Id: '', Name: '', Mobile: '', Email: '' } );
+            alert('User was added: ' + this.state.Name);
+           })
            .catch((error) => {
              console.error(error);
            });
-
-        //alert('User was added: ' + this.state.Name);
+        
       }
 
     render() {
@@ -56,10 +60,10 @@ class func1 extends Component
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label>Id:<input type="text" name="Id" value={this.state.Id} onChange={this.handleChangeId}/></label>
-                    <label>Name:<input type="text" name="Name" value={this.state.Name} onChange={this.handleChangeName}/></label>
+                    <label>Name:<input  type="text" name="Name" value={this.state.Name} onChange={this.handleChangeName}/></label>
                     <label>Mobile:<input type="text" name="Mobile" value={this.state.Mobile} onChange={this.handleChangeMobile}/></label>
                     <label>Email:<input type="text" name="Email" value={this.state.Email} onChange={this.handleChangeEmail}/></label>
-                    <input type="submit"variant="primary" name="Submit"/>
+                    <Button variant="primary" type="submit">Submit</Button>
                 </form>
             </div>
         )
