@@ -1,5 +1,5 @@
 import React, {Component } from 'react';
-import {Button} from 'react-bootstrap';
+import {Form, Row, Col, Button} from 'react-bootstrap';
 
 class func1 extends Component
 {
@@ -57,15 +57,39 @@ class func1 extends Component
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>Id:<input type="text" name="Id" value={this.state.Id} onChange={this.handleChangeId}/></label>
-                    <label>Name:<input  type="text" name="Name" value={this.state.Name} onChange={this.handleChangeName}/></label>
-                    <label>Mobile:<input type="text" name="Mobile" value={this.state.Mobile} onChange={this.handleChangeMobile}/></label>
-                    <label>Email:<input type="text" name="Email" value={this.state.Email} onChange={this.handleChangeEmail}/></label>
+            <>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Group as={Row} controlId="formId">
+                      <Form.Label column sm={2}>Id:</Form.Label>
+                      <Col sm={10}>
+                        <Form.Control type="text" name="Id" placeholder="enter id" value={this.state.Id} onChange={this.handleChangeId}/>
+                      </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formName">
+                      <Form.Label column sm={2}>Name:</Form.Label>
+                      <Col sm={10}>
+                        <Form.Control  type="text" name="Name" placeholder="enter name" value={this.state.Name} onChange={this.handleChangeName}/>
+                      </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formMobile">
+                      <Form.Label column sm={2}>Mobile:</Form.Label>
+                        <Col sm={10}>
+                        <Form.Control type="text" name="Mobile" placeholder="enter mobile no." value={this.state.Mobile} onChange={this.handleChangeMobile}/>
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formEmail">
+                      <Form.Label column sm={2}>Email:</Form.Label>
+                        <Col sm={10}>
+                        <Form.Control type="email" name="Email" placeholder="enter email" value={this.state.Email} onChange={this.handleChangeEmail}/>
+                        </Col>
+                    </Form.Group>                                                            
+                    
                     <Button variant="primary" type="submit">Submit</Button>
-                </form>
-            </div>
+                </Form>
+            </>
         )
     }
 }

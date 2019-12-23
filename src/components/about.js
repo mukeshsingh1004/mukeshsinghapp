@@ -10,9 +10,9 @@ const about = () => {
                     Explore the code on git.
                     <br/>
                     <br/>
-                        <strong>WebApp</strong>: https://github.com/mukeshsingh1004/mukeshsinghapp.git
+                        <strong>WebApp</strong>: <a href="https://github.com/mukeshsingh1004/mukeshsinghapp.git">https://github.com/mukeshsingh1004/mukeshsinghapp.git</a>
                     <br/>
-                        <strong>Functions Service</strong>: https://github.com/mukeshsingh1004/mukeshsingh.git
+                        <strong>Functions Service</strong>: <a href="https://github.com/mukeshsingh1004/mukeshsingh.git">https://github.com/mukeshsingh1004/mukeshsingh.git</a>
                 </p>
             </Jumbotron>
         </div>
