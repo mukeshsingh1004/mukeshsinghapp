@@ -11,7 +11,7 @@ class func2 extends Component
 
     componentDidMount()
     {
-        Console.log(cookie.load('AppServiceAuthSession'))
+        Console.log(cookie.get('AppServiceAuthSession'))
         //fetch('http://localhost:7071/api/GetAllUsers')
         fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==',{
             credentials: 'include'
