@@ -1,6 +1,6 @@
 import React, {Component } from 'react';
 import {Card} from 'react-bootstrap';
-import {Cookies} from 'react-cookie';
+import Cookies from 'universal-cookie';
 
 class func2 extends Component
 {
@@ -14,7 +14,9 @@ class func2 extends Component
         console.log('AppServiceAuthSession = ' + Cookies.get('AppServiceAuthSession'))
         //fetch('http://localhost:7071/api/GetAllUsers')
         fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==',{
-            credentials: 'include'
+            headers: {
+                'Authorization': 'Bearer ' + Cookies.get('AppServiceAuthSession')
+              }
         })
         .then(result => {
             return result.json();
