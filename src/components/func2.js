@@ -1,6 +1,6 @@
 import React, {Component } from 'react';
 import {Card} from 'react-bootstrap';
-import cookie from 'react-cookie';
+import Cookies from 'react-cookie';
 
 class func2 extends Component
 {
@@ -11,7 +11,7 @@ class func2 extends Component
 
     componentDidMount()
     {
-        Console.log(cookie.get('AppServiceAuthSession'))
+        Console.log(Cookies.get('AppServiceAuthSession'))
         //fetch('http://localhost:7071/api/GetAllUsers')
         fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==',{
             credentials: 'include'
