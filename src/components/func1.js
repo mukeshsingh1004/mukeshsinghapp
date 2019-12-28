@@ -39,10 +39,7 @@ class func1 extends Component
 
           //fetch('http://localhost:7071/api/AddNewUser', {
           fetch('https://mukeshsingh.azurewebsites.net/api/AddNewUser?code=GcU4AMRhxHKCiyMLoxp4tZUI2maeuq8U5GUI56oW8haWLOoUZE3Xdw==', {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json', 'Sec-Fetch-Mode': 'no-cors',
-            'Access-Control-Allow-Origin': '*'
-            },
+            method: 'post',           
             body: JSON.stringify(userObject)
            })
            .then((response) => {

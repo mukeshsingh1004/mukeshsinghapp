@@ -1,5 +1,6 @@
 import React, {Component } from 'react';
 import {Card} from 'react-bootstrap';
+import cookie from 'react-cookie';
 
 class func2 extends Component
 {
@@ -10,8 +11,11 @@ class func2 extends Component
 
     componentDidMount()
     {
+        Console.log(cookie.load('AppServiceAuthSession'))
         //fetch('http://localhost:7071/api/GetAllUsers')
-        fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==')
+        fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==',{
+            credentials: 'include'
+        })
         .then(result => {
             return result.json();
         })
@@ -35,7 +39,10 @@ class func2 extends Component
                                 </Card.Footer>
                             </Card>
                       </div>;
-            });
+            })
+            .catch((error) => {
+                console.error(error);
+            });;
 
             this.setState({data: dd});       
         })

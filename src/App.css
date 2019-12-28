@@ -19,12 +19,12 @@
   background-color: #282c34;
   color: white;
   position: absolute;
-  bottom: 0px;
-  width: 100%
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
 form {
-
   align-items: center;
   justify-content: left;
   width: 300px;
@@ -37,5 +37,11 @@ input {
 
 .card {
   overflow: auto;
-  height: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  height: 100%;
 }
