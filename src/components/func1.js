@@ -5,7 +5,7 @@ class func1 extends Component
 {
     constructor(){
         super();
-        this.state = {Id: String, Name: String, Mobile: String, Email: String };
+        this.state = {Id: '', Name: '', Mobile: '', Email: '' };
         this.handleChangeId = this.handleChangeId.bind(this);
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
