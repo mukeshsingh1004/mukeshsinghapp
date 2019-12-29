@@ -1,6 +1,6 @@
 import React, {Component } from 'react';
 import {Card} from 'react-bootstrap';
-import Cookies from 'universal-cookie';
+import {withCookies} from 'react-cookie';
 
 class func2 extends Component
 {
@@ -11,12 +11,18 @@ class func2 extends Component
 
     componentDidMount()
     {
-        console.log('AppServiceAuthSession = ' + Cookies.get('AppServiceAuthSession'))
+        const {cookies} = this.props;
+        let myauthcookie = 'Bearer ' + cookies.get('AppServiceAuthSession');
+        console.log('AppServiceAuthSession = ' + myauthcookie)
+        let headers = new Headers();
+        headers.append('Authorization', myauthcookie);
+
         //fetch('http://localhost:7071/api/GetAllUsers')
-        fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==',{
-            headers: {
-                'Authorization': 'Bearer ' + Cookies.get('AppServiceAuthSession')
-              }
+        fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==', 
+        {
+            method: 'GET',
+            withCredentials: true,
+            headers: headers
         })
         .then(result => {
             return result.json();
@@ -57,4 +63,4 @@ class func2 extends Component
     }
 }
 
-export default func2;
+export default withCookies(func2);
