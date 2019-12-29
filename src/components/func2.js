@@ -17,12 +17,46 @@ class func2 extends Component
 
     componentDidMount()
     {
-        let redirectUri = window.location.origin;
+
+//fetch('http://localhost:7071/api/GetAllUsers')
+fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==')
+.then(result => {
+    return result.json();
+})
+.then(jsonData => {           
+    console.log(jsonData);
+    let dd = jsonData.Value.map( jd => {
+       //console.log(jd);
+       return <div className="card" key={jd.Id}>
+                    <Card>
+                        <Card.Header>
+                            {jd.Name}
+                        </Card.Header>
+                        <Card.Body>
+                            <Card.Title>Id: {jd.Id}</Card.Title>
+                            <Card.Text>
+                                Mobile: {jd.Mobile}
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                            {jd.Email}
+                        </Card.Footer>
+                    </Card>
+              </div>;
+    })
+    .catch((error) => {
+        console.error(error);
+    });;
+
+    this.setState({data: dd});       
+})
+
+        /*let redirectUri = window.location.origin;
         console.info('redirect uri:' + redirectUri);
 
         var msalConfig = {
             auth: {
-                clientId: '7e1341ac-fd38-4b16-9f32-1496091d3157', 
+                clientId: '7e1341ac-fd38-4b16-9f32-1496091d3157',
                 authority: 'https://login.microsoftonline.com/ce8dddd8-c361-4e5e-87d3-f7203f024b8e', //This is your tenant info
                 redirectUri: 'https://mukeshsinghapp.azurewebsites.net'
             },
@@ -36,7 +70,7 @@ class func2 extends Component
         myMSALObj.handleRedirectCallback((error, response) => {
             if (error) {
                 console.log(error);
-            } 
+            }
             else {
                 if (response.tokenType === "access_token") {
                     //this.CallGetAllData(response.accessToken);
@@ -50,25 +84,24 @@ class func2 extends Component
             scopes: ["user.read"]
         };
 
-        myMSALObj.loginRedirect(requestObj)        
-        .then((loginResponse) => {          
-            myMSALObj.acquireTokenSilent(requestObj)
-            .then((tokenResponse) => {
-                this.CallGetAllData(tokenResponse.accessToken);
-            }).catch((error) => {
-                console.log(error);
-                if (this.requiresInteraction(error.errorCode)) {
-                    myMSALObj.acquireTokenPopup(requestObj).then((tokenResponse) =>
-                     {
+        myMSALObj.loginRedirect(requestObj)
+            .then((loginResponse) => {
+                myMSALObj.acquireTokenSilent(requestObj)
+                    .then((tokenResponse) => {
                         this.CallGetAllData(tokenResponse.accessToken);
                     }).catch((error) => {
                         console.log(error);
+                        if (this.requiresInteraction(error.errorCode)) {
+                            myMSALObj.acquireTokenPopup(requestObj).then((tokenResponse) => {
+                                this.CallGetAllData(tokenResponse.accessToken);
+                            }).catch((error) => {
+                                console.log(error);
+                            });
+                        }
                     });
-                }
-            });
-        }).catch((error) => {
-            console.log(error);
-        });
+            }).catch((error) => {
+                console.log(error);
+            }); */
     }
 
     requiresInteraction = (errorCode) => {
