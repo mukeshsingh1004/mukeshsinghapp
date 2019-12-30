@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route, NavLink} from 'react-router-dom';
-import FunctionsPage from './functions';
 import Func1Page from './func1';
 import Func2Page from './func2';
 import Func3Page from './func3';
@@ -17,11 +16,9 @@ return (
     </div>
 
     <div className="container-fluid col-sm-10">
-        <Route path="/functions" component={FunctionsPage}>
             <Route path="/functions/func1" component={Func1Page}/>
             <Route path="/functions/func2" component={Func2Page}/>
             <Route path="/functions/func3" component={Func3Page}/>
-        </Route>
     </div>
 </div>
 );

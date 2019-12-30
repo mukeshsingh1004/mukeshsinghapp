@@ -1,29 +1,22 @@
 import React, {Component } from 'react';
+import {withCookies} from 'react-cookie';
 
 class func3 extends Component
 {
-    constructor(){
-        super();
-        this.state = {data: String};
-    }
-
-    componentDidMount()
+    constructor(props)
     {
-        fetch('http://localhost:7071/api/GetAllUsers')
-        .then(result => {
-            return result.text();
-        })
-        .then( d=> {
-            console.log(d);
-            this.setState({data: d});
-        })
+        super(props);
+        const {cookies} = this.props;
+        this.state = {mycookies: cookies};
     }
 
     render() {
         return (
-            <div>{this.state.data}</div>
+            <>
+             <p>AppServiceAuthSession Cookie: {this.state.mycookies.get('AppServiceAuthSession')}</p>
+            </>
         )
     }
 }
 
-export default func3;
+export default withCookies(func3);
