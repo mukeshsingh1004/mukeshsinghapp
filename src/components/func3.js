@@ -6,8 +6,8 @@ class func3 extends Component
     constructor(props)
     {
         super(props);
-        const {Cookies} = this.props;
-        this.state = {mycookies: Cookies};
+        const {cookies} = this.props;
+        this.state = {mycookies: cookies};
     }
 
     render() {
