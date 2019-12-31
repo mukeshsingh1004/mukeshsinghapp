@@ -11,13 +11,14 @@ class func3 extends Component
     }
 
     componentDidMount()
-    {
-        var options = {
-            method: "POST"
-       };
-       var tokenEndpoint = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
-   
-       fetch(tokenEndpoint, options)
+    {  
+        var h = new Headers();
+        h.append("Access-Control-Allow-Origin", "*");
+
+       fetch('https://login.microsoftonline.com/common/oauth2/v2.0/token', {
+           method: 'post',
+           headers: h
+       })
        .then(result => {
            return result.text();
        })
@@ -27,7 +28,7 @@ class func3 extends Component
        })
        .catch((error) => {
         console.error(error);
-    });;
+      });
     }
 
     render() {
