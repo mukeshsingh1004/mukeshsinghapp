@@ -19,16 +19,16 @@ class func2 extends Component
 
     componentDidMount()
     {
-        let myheaders = new Headers();
-        myheaders.append('cookie', 'Bearer ' + this.state.mycookies.get('AppServiceAuthSession'));
-
-        console.info('AppServiceAuthSession: ' +  this.state.mycookies.get('AppServiceAuthSession'))
-
-        //fetch('http://localhost:7071/api/GetAllUsers')
-        fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==',
-        {
-            headers: myheaders
-        })
+        var headers = new Headers();
+        var bearer = "Bearer " + this.state.mycookies.get('AppServiceAuthSession');
+        headers.append("Authorization", bearer);
+        var options = {
+             method: "GET",
+             headers: headers
+        };
+        var graphEndpoint = "https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==";
+    
+        fetch(graphEndpoint, options)
         .then(result => {
             return result.json();
         })
@@ -57,7 +57,7 @@ class func2 extends Component
                 console.error(error);
             });;
 
-            this.setState({data: dd});       
+            this.setState({data: dd});    
         })
 
         /*let redirectUri = window.location.origin;
