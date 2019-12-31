@@ -11,7 +11,7 @@ return (
         <ul className="list-group list-group-nav">
             <NavLink className="list-group-item" to="/functions/func1">AddUser</NavLink>
             <NavLink className="list-group-item" to="/functions/func2">Show All Users</NavLink>
-            <NavLink className="list-group-item" to="/functions/func3">TBD</NavLink>
+            <NavLink className="list-group-item" to="/functions/func3">Show Token</NavLink>
         </ul>
     </div>
 
