@@ -1,7 +1,7 @@
 import React, {Component } from 'react';
 import {Card} from 'react-bootstrap';
 import {withCookies} from 'react-cookie';
-//import {UserAgentApplication} from 'msal';
+import {UserAgentApplication} from 'msal';
 
 class func2 extends Component
 {
@@ -19,55 +19,11 @@ class func2 extends Component
 
     componentDidMount()
     {
-        var headers = new Headers();
-        var bearer = "Bearer " + this.state.mycookies.get('AppServiceAuthSession');
-        headers.append("Authorization", bearer);
-        var options = {
-             method: "GET",
-             headers: headers
-        };
-        var graphEndpoint = "https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==";
-    
-        fetch(graphEndpoint, options)
-        .then(result => {
-            return result.json();
-        })
-        .then(jsonData => {           
-            console.log(jsonData);
-            let dd = jsonData.Value.map( jd => {
-            //console.log(jd);
-            return <div className="card" key={jd.Id}>
-                            <Card>
-                                <Card.Header>
-                                    {jd.Name}
-                                </Card.Header>
-                                <Card.Body>
-                                    <Card.Title>Id: {jd.Id}</Card.Title>
-                                    <Card.Text>
-                                        Mobile: {jd.Mobile}
-                                    </Card.Text>
-                                </Card.Body>
-                                <Card.Footer>
-                                    {jd.Email}
-                                </Card.Footer>
-                            </Card>
-                    </div>;
-            })
-            .catch((error) => {
-                console.error(error);
-            });;
-
-            this.setState({data: dd});    
-        })
-
-        /*let redirectUri = window.location.origin;
-        console.info('redirect uri:' + redirectUri);
-
         var msalConfig = {
             auth: {
-                clientId: '7e1341ac-fd38-4b16-9f32-1496091d3157',
+                clientId: 'c2340dfe-27e1-4918-befe-d81f26d52b42',
                 authority: 'https://login.microsoftonline.com/ce8dddd8-c361-4e5e-87d3-f7203f024b8e', //This is your tenant info
-                redirectUri: 'https://mukeshsinghapp.azurewebsites.net'
+                redirectUri: 'http://localhost:3000'
             },
             cache: {
                 cacheLocation: "localStorage",
@@ -82,6 +38,7 @@ class func2 extends Component
             }
             else {
                 if (response.tokenType === "access_token") {
+                    console.log("access_token is:" + response.accessToken);
                     //this.CallGetAllData(response.accessToken);
                 } else {
                     console.log("token type is:" + response.tokenType);
@@ -110,7 +67,7 @@ class func2 extends Component
                     });
             }).catch((error) => {
                 console.log(error);
-            }); */
+            });
     }
 
     requiresInteraction = (errorCode) => {
@@ -138,18 +95,17 @@ class func2 extends Component
    
     CallGetAllData = (accesstoken) => 
     {
-        let headers = new Headers();
-        headers.append('Authorization', accesstoken);
+        var bearer = "Bearer " + accesstoken;
+        var headers = new Headers();
+        headers.append("Authorization", bearer);
+        var options = {
+             method: "GET",
+             headers: headers
+        };
 
         //fetch('http://localhost:7071/api/GetAllUsers')
         fetch('https://mukeshsingh.azurewebsites.net/api/GetAllUsers?code=NOC7aTuJ5YGLd0Sn9OxFaoTGBKxTOlUaU5VZOc2kjLiBbfORiVKHOw==', 
-        {
-            method: 'GET',
-            Accept: 'application/json',
-            Content: 'application/json',
-            credentials: 'include',
-            headers: headers
-        })
+        options)
         .then(result => {
             return result.json();
         })
